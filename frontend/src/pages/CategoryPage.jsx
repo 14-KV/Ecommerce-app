@@ -11,7 +11,7 @@ const CategoryPage = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`https://dummyjson.com/products/category/${name}`)
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/products/category/${name}`)
       .then(res => res.json())
       .then(data => {
         setProducts(data.products);
