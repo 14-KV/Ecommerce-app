@@ -16,12 +16,13 @@ const Product = () => {
   const [messageText, setMessageText] = useState('');
   const [messageVisible, setMessageVisible] = useState(false);
   const [isWishlisted, setIsWishlisted] = useState(false);
+  
 
   const productId = id.toString();
 
   useEffect(() => {
     setLoading(true);
-    fetch(`https://dummyjson.com/products/${id}`)
+    fetch(`${import.meta.env.VITE_API_URL}/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setProduct(data);
