@@ -1,9 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useCart } from '../context/CartContext';
-import Spinner from '../components/Spinner';
+import Spinner from '../components/layout/Spinner';
 import { motion } from 'framer-motion';
-import { addToWishlist, removeFromWishlist } from '../firebase/firebaseUtils';
+import { addToWishlist, removeFromWishlist } from '../services/firebase/wishlistService';
 import { useAuth } from '../context/AuthContext';
 
 const Product = () => {

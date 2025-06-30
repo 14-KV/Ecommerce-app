@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { db } from "../firebase/firebaseConfig";
+import { db } from "../firebase/init";
 import { collection, getDocs } from "firebase/firestore";
 
-import WishlistCard from "../components/WishlistCard";
+import WishlistCard from "../components/cards/WishlistCard";
 
 
 
-const OrdersPage = () => {
+const Orders= () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("wishlist");
@@ -98,4 +98,4 @@ const OrdersPage = () => {
   );
 };
 
-export default OrdersPage;
+export default Orders;

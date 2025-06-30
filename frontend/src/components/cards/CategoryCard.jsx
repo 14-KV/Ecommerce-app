@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import categoryImages from '../data/categoryImages';
+import categoryImages from '../../data/categoryImages';
 
 function CategoryCard({ category, onClick }) {
   const [isLoading, setIsLoading] = useState(true);

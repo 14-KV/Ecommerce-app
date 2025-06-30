@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { addToWishlist, removeFromWishlist } from '../firebase/firebaseUtils';
-import { useAuth } from '../context/AuthContext';
+import { addToWishlist, removeFromWishlist } from '../../services/firebase/wishlistService';
+import { useAuth } from '../../context/AuthContext';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 
 const ProductCard = ({ product }) => {

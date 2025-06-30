@@ -1,8 +1,8 @@
 // src/components/Navbar.jsx
 import { Link, useNavigate } from 'react-router-dom';
-import { useCart } from '../context/CartContext';
+import { useCart } from '../../context/CartContext';
 import { ShoppingCart } from 'lucide-react';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 
 const Navbar = () => {
   const { cart } = useCart();

@@ -1,35 +1,29 @@
-// src/pages/SignUp.jsx
-import { useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase/firebaseConfig";
-import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 
 const SignUp = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
+  const [email, setEmail]       = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError]       = useState('');
+  const { signup }              = useAuth();  // 🔁 use AuthContext
+  const navigate                = useNavigate();
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-    setError("");
+    setError('');
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      navigate("/"); // redirect to homepage or login page
+      await signup(email, password);  // 🔁 uses authService internally
+      navigate('/');
     } catch (err) {
-      setError(err.message);
+      setError('Signup failed. Please try again.');
     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <form
-        onSubmit={handleSignUp}
-        className="bg-white shadow-md rounded px-8 pt-6 pb-8 w-full max-w-sm"
-      >
-        <h2 className="text-2xl font-bold mb-6 text-center text-blue-600">
-          Sign Up
-        </h2>
+      <form onSubmit={handleSignUp} className="bg-white shadow-md rounded px-8 pt-6 pb-8 w-full max-w-sm">
+        <h2 className="text-2xl font-bold mb-6 text-center text-blue-600">Sign Up</h2>
 
         {error && (
           <p className="text-red-500 text-sm text-center mb-4">{error}</p>

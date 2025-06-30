@@ -6,7 +6,7 @@ import {
   deleteDoc,
   doc
 } from 'firebase/firestore';
-import { db } from '../firebase/firebaseConfig'; // adjust to your path
+import { db } from '../firebase/init'; // adjust to your path
 import { useAuth } from './AuthContext';
 import { useEffect, useState } from 'react';
 import { createContext, useContext } from 'react';

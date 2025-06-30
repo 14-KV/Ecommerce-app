@@ -1,10 +1,10 @@
 // src/pages/CategoryPage.jsx
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import ProductCard from '../components/ProductCard';
-import Spinner from '../components/Spinner';
+import ProductCard from '../components/cards/ProductCard.jsx';
+import Spinner from '../components/layout/Spinner.jsx';
 
-const CategoryPage = () => {
+const Category = () => {
   const { name } = useParams();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -40,4 +40,4 @@ const CategoryPage = () => {
   );
 };
 
-export default CategoryPage;
+export default Category;

@@ -1,20 +1,20 @@
 import { useState } from 'react';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase/firebaseConfig';
 import { useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import { motion } from 'framer-motion';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
+  const [email, setEmail]       = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const navigate = useNavigate();
+  const [error, setError]       = useState('');
+  const { login }               = useAuth();  // 🔁 now from context
+  const navigate                = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      await login(email, password);    // 🔁 uses authService internally
       navigate('/');
     } catch (err) {
       setError('Invalid email or password. Please try again.');
@@ -23,13 +23,8 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-100 to-blue-100 px-4">
-      <form
-        onSubmit={handleLogin}
-        className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md"
-      >
-        <h2 className="text-3xl font-bold text-center text-blue-600 mb-6">
-          Welcome Back 👋
-        </h2>
+      <form onSubmit={handleLogin} className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
+        <h2 className="text-3xl font-bold text-center text-blue-600 mb-6">Welcome Back 👋</h2>
 
         {error && (
           <div className="bg-red-100 text-red-600 border border-red-400 px-4 py-2 rounded mb-4 text-sm text-center">
@@ -38,9 +33,7 @@ const Login = () => {
         )}
 
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-600 mb-1">
-            Email
-          </label>
+          <label className="block text-sm font-medium text-gray-600 mb-1">Email</label>
           <input
             type="email"
             className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200"
@@ -52,9 +45,7 @@ const Login = () => {
         </div>
 
         <div className="mb-6">
-          <label className="block text-sm font-medium text-gray-600 mb-1">
-            Password
-          </label>
+          <label className="block text-sm font-medium text-gray-600 mb-1">Password</label>
           <input
             type="password"
             className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200"
@@ -76,9 +67,7 @@ const Login = () => {
 
         <p className="text-sm mt-4 text-center text-gray-600">
           Don’t have an account?{' '}
-          <Link to="/signup" className="text-blue-500 hover:underline">
-            Sign Up
-          </Link>
+          <Link to="/signup" className="text-blue-500 hover:underline">Sign Up</Link>
         </p>
       </form>
     </div>
